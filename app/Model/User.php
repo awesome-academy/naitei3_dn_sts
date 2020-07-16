@@ -43,16 +43,16 @@ class User extends Authenticatable
     }
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_users', 'user_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id');
     }
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'task_users', 'user_id', 'task_id');
+        return $this->belongsToMany(Task::class, 'task_user', 'user_id', 'task_id');
     }
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'subject_users', 'user_id', 'subject_id');
+        return $this->belongsToMany(Subject::class, 'subject_user', 'user_id', 'subject_id');
     }
 }
