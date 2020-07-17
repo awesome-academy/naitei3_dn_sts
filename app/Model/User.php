@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -37,10 +38,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Users' roles
+     * 
+     * @var array
+     */
+    public const ROLES = [
+        'supervisor' => 0,
+        'trainee' => 1
+    ];
+    
     public function user_profile()
     {
         return $this->hasOne(User_profile::class);
     }
+
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id');
@@ -54,5 +66,15 @@ class User extends Authenticatable
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'subject_user', 'user_id', 'subject_id');
+    }
+
+    public function isSupervisor()
+    {
+        return Auth::user()->role == self::ROLES['supervisor'];
+    }
+
+    public function isTrainee()
+    {
+        return Auth::user()->role == self::ROLES['trainee'];
     }
 }

@@ -16,4 +16,6 @@ return [
     'courses' => 'Courses',
     'subjects' => 'Subjects',
     'trainees' => 'Trainees',
+    'admin_page'=>'Admin Dashboard',
+    'user_page'=>'User Dashboard',
 ];

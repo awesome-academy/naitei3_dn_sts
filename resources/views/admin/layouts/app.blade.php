@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/course.css') }}"" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -45,7 +46,7 @@
                     </a>
                 </li>
                 <li class="linav">
-                    <a href="#" id="aelement">
+                    <a href="{{ route('admin.courses.index') }}" id="aelement">
                         <div class="row">
                             <div class="col-md-3">
                                 <i class="fas fa-book-open"></i>
@@ -118,8 +119,8 @@
                                     </a>                                  
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if (Auth::user()->isSupervisor())
-                                        <a class="dropdown-item" id="admin_page" href="{{ route('admin') }}">
-                                            {{ trans('app.admin_page') }}
+                                        <a class="dropdown-item" id="admin_page" href="{{ route('home') }}">
+                                            {{ trans('app.user_page') }}
                                         </a>
                                         @endif
                                         <a class="dropdown-item" id="logout">
