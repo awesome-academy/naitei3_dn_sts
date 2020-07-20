@@ -143,4 +143,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="{{ mix('js/logout.js') }}"></script>
 <script src="{{ mix('js/toggle.js') }}"></script>
+@stack('scripts')
 </html>

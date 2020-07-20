@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Subject;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubjectRequest;
+use App\Services\SubjectService;
+use App\Task;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -35,9 +39,25 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubjectRequest $request)
     {
-        //
+        if($request->validator->failed()){
+            return response()->json(['error' => $request->validator->errors()->all()]);
+        }
+        else{
+            $subject = Subject::create([
+                'name' => $request->name,
+                'image' => $request->image,
+                'description' => $request->description,
+            ]);
+            foreach($request->input('task') as $key=>$value){
+                Task::create([
+                    'subject_id' => $subject->id,
+                    'name' => $value,
+                ]);
+            }
+            return response()->json(['success' => 'Done']);
+        }
     }
 
     /**
@@ -48,7 +68,13 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        return view('admin.subjects.show');
+        try {
+            $subject = $this->subjectService->FindSubjectById($id);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('alert', $e->getMessage());
+        }
+        $tasks = $subject->tasks()->get();
+        return view('admin.subjects.show', compact('subject', 'tasks'));
     }
 
     /**
@@ -59,7 +85,12 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.subjects.edit');
+        try {
+            $subject = $this->subjectService->FindSubjectById($id);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('alert', $e->getMessage());
+        }
+        return view('admin.subjects.edit', compact('subject'));
     }
 
     /**
@@ -71,7 +102,13 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $subject = $this->subjectService->FindSubjectById($id);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('alert', $e->getMessage());
+        }
+        $subject->update($request->all());
+        return redirect()->back()->with('alert', 'Updated!');
     }
 
     /**
@@ -83,5 +120,13 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private $subjectService;
+
+    public function __construct(SubjectService $subjectService)
+    {
+        $this->middleware('auth');
+        $this->subjectService = $subjectService;
     }
 }

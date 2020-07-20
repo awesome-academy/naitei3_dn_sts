@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @push('scripts')
     <script src="{{ mix('js/course.js') }}"></script>

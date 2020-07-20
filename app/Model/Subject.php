@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'image',
+        'description',
+    ];
     //
     public function users()
     {
