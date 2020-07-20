@@ -11,6 +11,7 @@ if(logout)
         $.ajax({
             type: 'POST',
             url: '/logout',
+            crossDomain: true,
             success: function(response)
             {
                 window.location.reload();
