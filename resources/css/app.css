@@ -42,7 +42,7 @@ a:focus {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-btn {
+.btn {
     box-shadow: none;
     outline: none !important;
     border: none;
@@ -80,6 +80,11 @@ span {
 
 #sidebar #sidebarCollapse{
     width: 250px;;
+    transition: all 0.3s;
+}
+
+#sidebar .card{
+    max-height: 1000px;
     transition: all 0.3s;
 }
 
@@ -274,4 +279,13 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+.nav-title{
+    color: rgba(255, 0, 0, 0.801);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
 }

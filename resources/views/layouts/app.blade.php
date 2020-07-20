@@ -25,68 +25,69 @@
 <body>
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <img src="{{ asset('image/logo3.png') }}" id="logo">
-                <img src="{{ asset('image/minilogo.png') }}" id="minilogo">
-            </div>
+        <div class="sidebar-div">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <img src="{{ asset('image/logo3.png') }}" id="logo">
+                    <img src="{{ asset('image/minilogo.png') }}" id="minilogo">
+                </div>
 
-            <ul class="menu-nav components">
-                <li class="active linav">
-                    <a href="#homeSubmenu" id="aelement">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <i class="fas fa-home"></i>
+                <ul class="menu-nav components">
+                    <li class="linav dashboard">
+                        <a href="{{ route('home') }}" id="aelement">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="col-md-9" id="titlediv">
+                                    {{ trans('app.dashboard') }}
+                                </div>
                             </div>
-                            <div class="col-md-9" id="titlediv">
-                                {{ trans('app.dashboard') }}
+                        </a>
+                    </li>
+                    <li class="linav courses">
+                        <a href="#" id="aelement">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="col-md-9" id="titlediv">
+                                    {{ trans('app.courses') }}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="linav">
-                    <a href="#" id="aelement">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <i class="fas fa-book-open"></i>
+                        </a>
+                    </li>
+                    <li class="linav subjects">
+                    <a href="" id="aelement">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                                <div class="col-md-9" id="titlediv">
+                                    {{ trans('app.subjects') }}
+                                </div>
                             </div>
-                            <div class="col-md-9" id="titlediv">
-                                {{ trans('app.courses') }}
+                        </a>
+                    </li>
+                    <li class="linav trainees">
+                        <a href="#" id="aelement">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="col-md-9" id="titlediv">
+                                    {{ trans('app.trainees') }}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="linav">
-                    <a href="#" id="aelement">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <i class="fas fa-pencil-alt"></i>
-                            </div>
-                            <div class="col-md-9" id="titlediv">
-                                {{ trans('app.subjects') }}
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="linav">
-                    <a href="#" id="aelement">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <i class="fas fa-user-friends"></i>
-                            </div>
-                            <div class="col-md-9" id="titlediv">
-                                {{ trans('app.trainees') }}
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <button type="button" id="sidebarCollapse" class="btn btn-danger fixed-bottom rounded-0">
-                <i class="fas fa-arrow-alt-circle-left" id="collapseicon"></i>
-            </button>
-        </nav>
-
-        <div id="content">
+                        </a>
+                    </li>
+                </ul>
+                <button type="button" id="sidebarCollapse" class="btn btn-danger fixed-bottom rounded-0">
+                    <i class="fas fa-arrow-alt-circle-left" id="collapseicon"></i>
+                </button>
+            </nav>
+        </div>
+        <div id="content" class="">
             <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container-fluid">
 
@@ -112,7 +113,7 @@
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>                                  
+                                    </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if (Auth::user()->isSupervisor())
                                         <a class="dropdown-item" id="admin_page" href="{{ route('admin') }}">
@@ -129,7 +130,7 @@
                     </div>
                 </div>
             </nav>
-            <main class="py-4">
+            <main class="">
                 @yield('content')
             </main>
         </div>

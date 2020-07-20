@@ -33,8 +33,8 @@
             </div>
 
             <ul class="menu-nav components">
-                <li class="active linav">
-                    <a href="#homeSubmenu" id="aelement">
+                <li class="linav dashboard">
+                    <a href="{{ route('admin') }}" id="aelement">
                         <div class="row">
                             <div class="col-md-3">
                                 <i class="fas fa-home"></i>
@@ -45,7 +45,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="linav">
+                <li class="linav courses">
                     <a href="{{ route('admin.courses.index') }}" id="aelement">
                         <div class="row">
                             <div class="col-md-3">
@@ -57,8 +57,8 @@
                         </div>
                     </a>
                 </li>
-                <li class="linav">
-                    <a href="#" id="aelement">
+                <li class="linav subjects">
+                    <a href="{{ route('admin.subject.index') }}" id="aelement">
                         <div class="row">
                             <div class="col-md-3">
                                 <i class="fas fa-pencil-alt"></i>
@@ -69,7 +69,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="linav">
+                <li class="linav trainees">
                     <a href="#" id="aelement">
                         <div class="row">
                             <div class="col-md-3">
@@ -113,7 +113,7 @@
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>                                  
+                                    </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if (Auth::user()->isSupervisor())
                                         <a class="dropdown-item" id="admin_page" href="{{ route('home') }}">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </nav>
-            <main class="py-4">
+            <main class="">
                 @yield('content')
             </main>
         </div>
