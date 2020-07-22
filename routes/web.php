@@ -16,3 +16,18 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+//supervisor controller
+Route::group(['prefix' => 'admin'], function () {
+    Route::view('/', 'admin.layouts.app')
+    ->name('admin')
+    ->middleware('admin');
+
+    Route::middleware('admin')->resource('courses', 'Admin\CourseController')->only([
+        'index',
+    ])->names([
+        'index' => 'admin.courses.index',
+    ]);
+});
+
+//trainee controller
