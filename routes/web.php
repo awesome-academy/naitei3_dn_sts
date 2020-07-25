@@ -25,8 +25,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware('admin')->resource('courses', 'Admin\CourseController')->only([
         'index',
+        'store',
+        'create',
     ])->names([
         'index' => 'admin.courses.index',
+        'store' => 'admin.courses.store',
+        'create' => 'admin.courses.create',
     ]);
 });
 

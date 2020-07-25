@@ -112,7 +112,7 @@
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>                                  
+                                    </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if (Auth::user()->isSupervisor())
                                         <a class="dropdown-item" id="admin_page" href="{{ route('admin') }}">
@@ -142,4 +142,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="{{ mix('js/logout.js') }}"></script>
 <script src="{{ mix('js/toggle.js') }}"></script>
+@stack('scripts')
 </html>

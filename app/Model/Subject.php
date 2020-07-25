@@ -14,7 +14,7 @@ class Subject extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_subject', 'subject_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_subject', 'subject_id', 'course_id')->withPivot('status');
     }
 
     public function tasks()
