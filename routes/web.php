@@ -46,3 +46,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //trainee controller
+Route::resource('courses', 'CourseController');

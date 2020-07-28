@@ -33,7 +33,15 @@ class CoursePolicy
         if ($user->isSupervisor())
             return true;
         if ($user->isTrainee())
-            return $user->id == $course->user_id;
+        {
+            $course = $course->users()->get();
+            foreach($course as $item)
+            {
+                if($user->id == $item->pivot->user_id)
+                    return true;
+            }
+            return false;
+        }
     }
 
     /**

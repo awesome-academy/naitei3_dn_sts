@@ -40,14 +40,14 @@ class User extends Authenticatable
 
     /**
      * Users' roles
-     * 
+     *
      * @var array
      */
     public const ROLES = [
         'supervisor' => 0,
         'trainee' => 1
     ];
-    
+
     public function user_profile()
     {
         return $this->hasOne(User_profile::class);
@@ -55,12 +55,12 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id')->withPivot('role', 'start_day', 'end_day', 'status');;
     }
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'task_user', 'user_id', 'task_id');
+        return $this->belongsToMany(Task::class, 'task_user', 'user_id', 'task_id')->withPivot('report_content', 'status');
     }
 
     public function subjects()
@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return Auth::user()->role == self::ROLES['trainee'];
     }
+
+    protected $dates = [
+        'start_day',
+        'end_day',
+    ];
 }
