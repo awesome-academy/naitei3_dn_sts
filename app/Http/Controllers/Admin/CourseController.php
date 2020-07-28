@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -27,7 +29,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $subjects = Subject::all();
+        return view('admin.courses.new', compact('subjects'));
     }
 
     /**
@@ -36,9 +39,20 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        //
+        if($request->validator->failed()){
+            return response()->json(['error' => $request->validator->errors()->all()]);
+        }
+        else{
+            $course = Course::create($request->all());
+
+            foreach($request->input('subject') as $key=>$value){
+                $subject = Subject::find($value);
+                $subject->courses()->attach($course->id, ['status' => 0]);
+            }
+            return response()->json(['success' => 'Done']);
+        }
     }
 
     /**
