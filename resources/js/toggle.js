@@ -40,3 +40,29 @@ if(collaspsebtn)
         }
     })
 }
+
+if(window.location.href.indexOf('courses') > -1){
+    handleNav('courses');
+}
+else if(window.location.href.indexOf('subjects') > -1){
+    handleNav('subjects');
+}
+else if(window.location.href.indexOf('trainees') > -1){
+    handleNav('trainees');
+}
+else if(window.location.href.indexOf('') > -1){
+    handleNav('dashboard');
+}
+
+
+function handleNav(name){
+    for(var x = 0; x < linav.length; x++)
+    {
+        if(linav[x].classList.contains(name) && !linav[x].classList.contains('active'))
+        {
+            linav[x].classList.add('active');
+            continue;
+        }
+        linav[x].classList.remove('active');
+    }
+}

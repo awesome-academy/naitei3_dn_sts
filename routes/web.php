@@ -1,5 +1,6 @@
 <?php
 
+use App\Subject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,16 @@ Route::group(['prefix' => 'admin'], function () {
         'index' => 'admin.courses.index',
         'store' => 'admin.courses.store',
         'create' => 'admin.courses.create',
+    ]);
+
+    Route::middleware('admin')->resource('subjects', 'Admin\SubjectController')->names([
+        'index' => 'admin.subject.index',
+        'create' => 'admin.subject.create',
+        'store' => 'admin.subject.store',
+        'show' => 'admin.subject.show',
+        'edit' => 'admin.subject.edit',
+        'update' => 'admin.subject.update',
+        'destroy' => 'admin.subject.destroy',
     ]);
 });
 
