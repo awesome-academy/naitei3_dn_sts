@@ -10,6 +10,7 @@ return [
     'mon' => 'Month',
     'year' => 'Year',
     'coursestatus' => 'Status:',
+    'init' => 'Initial',
     'open' => 'Open',
     'close' => 'Close',
     'coursestartday' => 'Start Day',

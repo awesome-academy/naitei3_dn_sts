@@ -6,7 +6,9 @@ use App\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Subject;
+use DateTime;
 use Illuminate\Http\Request;
+use \Response;
 
 class CourseController extends Controller
 {
@@ -63,7 +65,15 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Course::select('id', 'name', 'description', 'duration', 'duration_type', 'status', 'image', 'start_day', 'end_day')->find($id);
+        $course_subjects = $course->subjects;
+        $subject_tasks = [];
+        $course_users = $course->users;
+        foreach ($course_subjects as $subject) 
+        {
+            $subject_tasks[$subject->id] = $subject->tasks;
+        }
+        return view('admin.courses.show', compact('course','course_subjects','subject_tasks','course_users'));
     }
 
     /**
@@ -98,5 +108,30 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateStatus(Request $request)  
+    {
+        $id = $request->get('id');
+        $status = $request->get('status');
+        $current_day = new DateTime();
+        $html = '';
+        if ($status == 1)
+        {
+            $html = '<span class="badge badge-success">Started</span>';
+            Course::where('id', $id)->update(array('status' => $status, 'start_day' => $current_day));
+        }           
+        if ($status == 2)
+        {
+            $html = '<span class="badge badge-secondary">Ended</span>';
+            
+            Course::where('id', $id)->update(array('status' => $status, 'end_day' => $current_day));
+        }
+            
+        return Response::json(array(
+            'success' => true,
+            'html' => $html,
+            'date' => $current_day->format('Y/m/d'),
+        ));
     }
 }

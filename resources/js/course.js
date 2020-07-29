@@ -44,3 +44,21 @@ $(document).ready(function(){
         });
     })
 });
+$('.datepicker').datepicker({
+    weekStart: 1,
+    daysOfWeekHighlighted: "6,0",
+    autoclose: true,
+    todayHighlight: true,
+});
+
+$('.datepicker').each(function () {
+    $(this).datepicker("setDate", $(this).val())
+});
+
+$(".search-input").keyup(function () {
+                var index = $(".search-input").index($(this));
+                var value = $(this).val().toLowerCase();
+                $(".course-table").eq(index).find('tr').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });

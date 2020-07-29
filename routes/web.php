@@ -1,6 +1,7 @@
 <?php
 
 use App\Subject;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,14 +25,22 @@ Route::group(['prefix' => 'admin'], function () {
     ->name('admin')
     ->middleware('admin');
 
+    Route::middleware('admin')
+    ->post('courses/update_status', 'Admin\CourseController@updateStatus')
+    ->name('admin.courses.update_status');
+
     Route::middleware('admin')->resource('courses', 'Admin\CourseController')->only([
         'index',
         'store',
         'create',
+        'show',
+        'update',
     ])->names([
         'index' => 'admin.courses.index',
         'store' => 'admin.courses.store',
         'create' => 'admin.courses.create',
+        'show' => 'admin.courses.show',
+        'update' => 'admin.courses.update',
     ]);
 
     Route::middleware('admin')->resource('subjects', 'Admin\SubjectController')->names([
@@ -43,6 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
         'update' => 'admin.subject.update',
         'destroy' => 'admin.subject.destroy',
     ]);
+
 });
 
 //trainee controller
