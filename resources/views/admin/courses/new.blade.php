@@ -41,8 +41,7 @@
                         <div class="form-group">
                             <label for="status"> {{ trans('new_course.coursestatus') }} </label>
                             <select name="status" id="status" class="form-control col-sm-2">
-                                <option value="0"> {{ trans('new_course.open') }} </option>
-                                <option value="1"> {{ trans('new_course.close') }} </option>
+                                <option value="0"> {{ trans('new_course.init') }} </option>
                             </select>
                         </div>
 
