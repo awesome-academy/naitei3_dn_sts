@@ -46,25 +46,13 @@
                         </a>
                     </li>
                     <li class="linav courses">
-                        <a href="#" id="aelement">
+                        <a href=" {{route('courses.index')}} " id="aelement">
                             <div class="row">
                                 <div class="col-md-3">
                                     <i class="fas fa-book-open"></i>
                                 </div>
                                 <div class="col-md-9" id="titlediv">
                                     {{ trans('app.courses') }}
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="linav subjects">
-                    <a href="" id="aelement">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div class="col-md-9" id="titlediv">
-                                    {{ trans('app.subjects') }}
                                 </div>
                             </div>
                         </a>
